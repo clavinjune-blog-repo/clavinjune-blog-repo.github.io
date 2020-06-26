@@ -1,20 +1,79 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-  {%- include head.html -%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- seo -%}
+    {%- feed_meta -%}
+    <link rel="stylesheet" href="{{ "css/styles.css" | relative_url }}">
+  </head>
 
   <body>
+    <section class="hero is-dark is-fullheight">
+      <div class="hero-head">
+        <nav class="navbar is-dark">
+          <div class="navbar-brand">
+            <a class="navbar-item" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+    
+          {%- assign default_paths = site.pages | map: "path" -%}
+          {%- assign page_paths = site.header_pages | default: default_paths -%}
+          {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
+    
+          {%- if titles_size > 0 -%}
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              {%- for path in page_paths -%}
+                {%- assign page = site.pages | where: "path", path | first -%}
+                {%- if page.title -%}
+                  <a class="navbar-item" rel="author" href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
+                {%- endif -%}
+              {%- endfor -%}
+              <a class="navbar-item" rel="author" href="{{ page.url | relative_url }}">Feed</a>
+            </div>
+          </div>
+          {%- endif -%}
+        </nav>
 
-    {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
       </div>
-    </main>
+      
+      <div class="hero-body">
+        <div class="container">
+          {{ content }}
+        </div>
+      </div>
 
-    {%- include footer.html -%}
-
+      <div class="hero-foot">
+        <footer class="footer has-background-dark has-text-centered">
+          Clavin June &copy; <span id="year">2020</span> &mdash; Proudly made with 
+          <a class="has-text-info" href="https://jekyllrb.com/">Jekyll</a>
+          +
+          <a class="has-text-info" href="https://bulma.io">Bulma</a>
+        </footer>
+      </div>
+    </section>
+    
   </body>
+
+  <script>
+    'use strict'
+    const burger = document.querySelector('.navbar-burger')
+    const menu = document.querySelector('.navbar-menu')
+    const year = document.querySelector('#year')
+
+    burger.addEventListener('click', (event) => {
+      burger.classList.toggle('is-active')
+      menu.classList.toggle('is-active')
+    })
+
+    year.innerHTML = new Date().getFullYear()
+
+  </script>
 
 </html>

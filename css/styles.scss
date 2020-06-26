@@ -1,0 +1,12 @@
+---
+---
+@import "_bulma";
+@import "_default";
+
+
+// overriding
+.hero.is-dark a.navbar-item:hover, .hero.is-dark a.navbar-item.is-active {
+    background-color: #292929 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
