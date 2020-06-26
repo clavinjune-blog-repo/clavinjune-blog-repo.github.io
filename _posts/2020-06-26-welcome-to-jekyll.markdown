@@ -14,12 +14,12 @@ Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit number
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+{% highlight java %}
+public class FooBar {
+  public static void main(String []args) {
+    System.out.println("FOOAR");
+  }
+}
 {% endhighlight %}
 
 > The overriding design goal for Markdown's
