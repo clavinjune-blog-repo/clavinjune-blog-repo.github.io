@@ -14,6 +14,9 @@ Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit number
 
 Jekyll also offers powerful support for code snippets:
 
+*bold*
+**italic**
+
 {% highlight java %}
 public class FooBar {
   public static void main(String []args) {
